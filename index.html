@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Hallery.se — fem designförslag</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5c5c5c; --line:#ddd; --paper:#fafaf8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font: 18px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--paper); }
+  main { max-width: 1200px; margin: 0 auto; padding: 56px 24px 80px; }
+  h1 { font-size: clamp(32px, 5vw, 52px); line-height:1.1; margin:0 0 12px; letter-spacing:-0.02em; }
+  .lead { max-width: 60ch; color: var(--muted); margin: 0 0 40px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+  a.card { display:block; color:inherit; text-decoration:none; background:#fff; border:1px solid var(--line); }
+  a.card:hover, a.card:focus-visible { border-color: var(--ink); outline: none; }
+  a.card:focus-visible { box-shadow: 0 0 0 3px #1a1a1a33; }
+  .shot { aspect-ratio: 4 / 5; overflow:hidden; background:#eee; border-bottom:1px solid var(--line); }
+  .shot img { width:100%; height:100%; object-fit:cover; object-position: top; display:block; }
+  .body { padding: 18px 20px 22px; }
+  .num { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  h2 { font-size: 24px; margin: 4px 0 8px; }
+  .body p { margin:0; color: var(--muted); font-size: 17px; }
+  .go { display:inline-block; margin-top:14px; font-weight:600; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 16px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Hallery.se — fem designförslag</h1>
+  <p class="lead">Klicka på ett förslag för att se hela startsidan. Alla har samma innehåll och funktioner — bara utseendet skiljer. Prova gärna även i mobilen. Exemplet under ”Aktuellt” är påhittat.</p>
+  <div class="grid">
+    <a class="card" href="1-stealth/">
+      <div class="shot"><img src="1-stealth/thumb.jpg" alt="Förhandsvisning av förslag 1, Stealth"></div>
+      <div class="body"><div class="num">Förslag 1</div><h2>Stealth</h2>
+        <p>Mörkt och skulpturalt, som de facetterade svartbrända Stealth-vaserna. Silver som lyser mot grafit.</p><span class="go">Visa förslaget →</span></div>
+    </a>
+    <a class="card" href="2-ritning/">
+      <div class="shot"><img src="2-ritning/thumb.jpg" alt="Förhandsvisning av förslag 2, Ritning"></div>
+      <div class="body"><div class="num">Förslag 2</div><h2>Ritning</h2>
+        <p>Arkitektens ritblad: vitt papper, tunna linjer, exakt rutnät och ditt keramikhus som symbol.</p><span class="go">Visa förslaget →</span></div>
+    </a>
+    <a class="card" href="3-lav-och-granit/">
+      <div class="shot"><img src="3-lav-och-granit/thumb.jpg" alt="Förhandsvisning av förslag 3, Lav och granit"></div>
+      <div class="body"><div class="num">Förslag 3</div><h2>Lav &amp; granit</h2>
+        <p>Natur och raku: varma stengrå toner, mossgrönt från rakuglasyren och en elegant serif.</p><span class="go">Visa förslaget →</span></div>
+    </a>
+    <a class="card" href="4-vita-vaggar/">
+      <div class="shot"><img src="4-vita-vaggar/thumb.jpg" alt="Förhandsvisning av förslag 4, Vita väggar"></div>
+      <div class="body"><div class="num">Förslag 4</div><h2>Vita väggar</h2>
+        <p>Som ett modernt galleri: mycket luft, verken i fokus, ek och ockra som enda accenter.</p><span class="go">Visa förslaget →</span></div>
+    </a>
+    <a class="card" href="5-klassisk/">
+      <div class="shot"><img src="5-klassisk/thumb.jpg" alt="Förhandsvisning av förslag 5, Klassisk"></div>
+      <div class="body"><div class="num">Förslag 5</div><h2>Klassisk</h2>
+        <p>Din nuvarande hemsida, fast uppfräschad: samma bild, svarta meny och svartvita färger — men tydligare och modernare.</p><span class="go">Visa förslaget →</span></div>
+    </a>
+  </div>
+  <footer>Utkast för Hallery — inte en publicerad webbplats. Jämför gärna med <a href="https://hallery.se/">nuvarande hallery.se</a>.</footer>
+</main>
+</body>
+</html>

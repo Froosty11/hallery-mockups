@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Hallery – ett hemmagalleri i Danderyd</title>
+<meta name="description" content="Hallery är Klara Frosteruds hemmagalleri på Bergåsstigen 2E i Danderyd. Utställningar, silversmycken och keramik.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --ink:#222;
+    --soft:#5e5e5e;
+    --line:#dcdcdc;
+    --mist:#f4f4f4;
+    --white:#fff;
+    --red:#111;
+    --red-deep:#000;
+    --wrap:1200px;
+    --pad:clamp(20px,4vw,48px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{margin:0;background:var(--white);color:var(--ink);
+    font-family:"Roboto Flex",Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:19px;line-height:1.65;font-weight:400;font-variation-settings:"opsz" 18}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  h1,h2,h3{margin:0;color:var(--black);font-weight:600;line-height:1.12;letter-spacing:-.01em}
+  p{margin:0 0 1em}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+  :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:2px}
+  .on-dark :focus-visible{outline-color:#fff}
+  .skip{position:absolute;left:12px;top:-60px;z-index:100;background:#000;color:#fff;padding:12px 18px;text-decoration:none}
+  .skip:focus{top:12px}
+
+  /* ---------- section heading (centred, as on today's site) ---------- */
+  .sec{padding:clamp(72px,9vw,120px) 0}
+  .sec-head{text-align:center;max-width:720px;margin:0 auto clamp(36px,5vw,56px)}
+  .sec-head h2{font-size:clamp(34px,4.4vw,52px);font-variation-settings:"opsz" 96}
+  .sec-head h2::after{content:"";display:block;width:48px;height:3px;background:var(--red);margin:20px auto 0}
+  .sec-head p{margin:22px auto 0;color:var(--soft);font-size:20px;max-width:46ch}
+  .on-dark .sec-head h2{color:#fff}
+  .on-dark .sec-head h2::after{background:#fff}
+  .on-dark .sec-head p{color:#d6d6d6}
+
+  /* ---------- buttons & links ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;
+    font:inherit;font-size:18px;font-weight:550;text-decoration:none;border:2px solid currentColor;border-radius:2px;cursor:pointer;
+    transition:background-color .2s,color .2s,border-color .2s}
+  .btn-dark{background:#000;color:#fff;border-color:#000}
+  .btn-dark:hover{background:var(--red);border-color:var(--red)}
+  .btn-line{background:transparent;color:#000}
+  .btn-line:hover{background:#000;color:#fff}
+  .more{display:inline-flex;align-items:center;min-height:44px;font-weight:550;color:var(--red);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+  .more:hover{text-decoration-thickness:2px}
+  .center{text-align:center}
+  section[id],footer[id]{scroll-margin-top:76px}
+
+  /* ---------- header ---------- */
+  .top{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:1360px}
+  .brand{font-size:28px;font-weight:650;letter-spacing:-.02em;color:#000;text-decoration:none;font-variation-settings:"opsz" 72;
+    min-height:44px;display:flex;align-items:center}
+  .nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+  .nav a{display:flex;align-items:center;min-height:44px;padding:0 14px;font-size:17px;font-weight:450;color:#000;text-decoration:none;position:relative}
+  .nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:6px;height:2px;background:var(--red);transform:scaleX(0);transition:transform .2s}
+  .nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+  .nav a[aria-current="page"]{font-weight:600}
+  .menu-btn{display:none;align-items:center;gap:10px;min-height:48px;min-width:48px;padding:0 14px;margin-right:-14px;background:none;border:0;
+    font:inherit;font-size:17px;font-weight:550;color:#000;cursor:pointer}
+  .burger{width:24px;height:16px;position:relative}
+  .burger span{position:absolute;left:0;right:0;height:2px;background:#000;transition:transform .2s,opacity .2s}
+  .burger span:nth-child(1){top:0}.burger span:nth-child(2){top:7px}.burger span:nth-child(3){top:14px}
+  .menu-btn[aria-expanded="true"] .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] .burger span:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;height:min(calc(100vh - 76px),860px);min-height:560px;color:#fff;overflow:hidden;background:#3a3a36}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;transform:scale(1.13);transform-origin:50% 100%}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,0) 20%,rgba(0,0,0,0) 36%,rgba(0,0,0,.62) 62%,rgba(0,0,0,.82) 100%)}
+  .hero-text{position:absolute;left:0;right:0;bottom:clamp(48px,8vh,88px);z-index:1;text-align:center;padding:0 var(--pad)}
+  .hero h1{color:#fff;font-size:clamp(76px,9.5vw,136px);font-weight:620;letter-spacing:-.035em;line-height:.95;
+    font-variation-settings:"opsz" 144;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+  .hero p{margin:18px auto 30px;font-size:clamp(20px,2vw,25px);font-weight:400;max-width:44ch;line-height:1.4;text-wrap:balance;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+  .btn-hero{background:#fff;color:#000;border-color:#fff}
+  .btn-hero:hover{background:transparent;color:#fff}
+  .hero :focus-visible{outline-color:#fff}
+
+  /* ---------- aktuellt ---------- */
+  .now{background:var(--red);color:#fff}
+  .now .wrap{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,72px);align-items:center;padding-top:clamp(56px,7vw,88px);padding-bottom:clamp(56px,7vw,88px)}
+  .now figure{margin:0}
+  .now figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:40% 60%}
+  .now figcaption{font-size:15px;color:#cfcfcf;margin-top:10px}
+  .tag{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:600;background:#fff;color:var(--red);padding:6px 14px;border-radius:2px;margin-bottom:22px}
+  .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red)}
+  .now h2{color:#fff;font-size:clamp(36px,4.6vw,60px);font-variation-settings:"opsz" 120;letter-spacing:-.02em}
+  .now .lead{font-size:clamp(19px,1.6vw,22px);margin:20px 0 32px;max-width:40ch;color:#fff}
+  .dates{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;list-style:none;margin:0 0 28px;padding:0;max-width:560px}
+  .dates li{border:1.5px solid rgba(255,255,255,.7);padding:14px 16px 12px;line-height:1.2}
+  .dates .d{display:block;font-size:38px;white-space:nowrap;font-weight:600;letter-spacing:-.02em;font-variation-settings:"opsz" 96}
+  .dates .m{display:block;font-size:17px;margin-bottom:4px}
+  .where{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:19px;margin-bottom:32px}
+  .where strong{font-weight:600}
+  .now .btn-white{background:#fff;color:var(--red);border-color:#fff}
+  .now .btn-white:hover{background:transparent;color:#fff}
+  .now .btn-ghost{color:#fff;border-color:rgba(255,255,255,.8)}
+  .now .btn-ghost:hover{background:#fff;color:var(--red)}
+  .now .actions{display:flex;flex-wrap:wrap;gap:12px}
+
+  /* ---------- om ---------- */
+  .about{display:grid;grid-template-columns:7fr 5fr;gap:clamp(36px,6vw,96px);align-items:start;max-width:1120px;margin:0 auto}
+  .about .text{max-width:62ch}
+  .about .text p:first-child{font-size:22px;line-height:1.55;color:#000}
+  .sign{margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+  .sign b{display:block;font-weight:600;color:#000}
+  .sign span{color:var(--soft)}
+  .about figure{margin:0}
+  .about figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 35%}
+  .about figcaption{font-size:15px;color:var(--soft);margin-top:10px}
+
+  /* ---------- till salu ---------- */
+  .forsale{background:var(--mist)}
+  .chips{display:flex;justify-content:center;gap:10px;margin:-16px 0 40px;flex-wrap:wrap}
+  .chip{min-height:44px;padding:0 22px;border:1.5px solid #000;background:#fff;color:#000;font:inherit;font-size:17px;font-weight:500;border-radius:22px;cursor:pointer}
+  .chip[aria-pressed="true"]{background:#000;color:#fff}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 28px;list-style:none;margin:0;padding:0}
+  .item{display:flex;flex-direction:column}
+  .item[hidden]{display:none}
+  .mat{background:#fff;padding:14px;border:1px solid #e6e6e6}
+  .mat img{width:100%;aspect-ratio:1;object-fit:cover}
+  .item.sold .mat img{filter:grayscale(.35) brightness(.96)}
+  .meta{padding-top:16px;display:flex;flex-direction:column;flex:1}
+  .item h3{font-size:20px;font-weight:600;line-height:1.3;font-variation-settings:"opsz" 24}
+  .item h3 a{text-decoration:none}
+  .item h3 a:hover{text-decoration:underline;text-underline-offset:4px}
+  .tech{color:var(--soft);font-size:17px;margin:4px 0 12px}
+  .buy{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .price{font-size:20px;font-weight:600;color:#000;font-variant-numeric:tabular-nums}
+  .sold .price{color:var(--soft);font-weight:450;text-decoration:line-through;text-decoration-thickness:1px}
+  .status{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:4px 11px;border-radius:2px;line-height:1.4}
+  .s-sale{color:#1d1d1d;background:#fff;border:1.5px solid #1d1d1d}
+  .s-sale::before{content:"";width:8px;height:8px;border-radius:50%;background:#1d1d1d}
+  .s-res{color:#1d1d1d;background:#fff;border:1.5px dashed #1d1d1d}
+  .s-res::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid #1d1d1d}
+  .s-sold{color:#fff;background:var(--red);border:1.5px solid var(--red)}
+  .ask{display:flex;align-items:center;justify-content:center;min-height:46px;margin-top:14px;border:1.5px solid #000;color:#000;text-decoration:none;font-weight:550;font-size:17px;background:#fff}
+  .ask:hover{background:#000;color:#fff}
+  .sold .ask{border-color:#bdbdbd;color:#444}
+  .grid-foot{text-align:center;margin-top:52px}
+
+  /* ---------- utställningar (slideshow) ---------- */
+  .show{max-width:1120px;margin:0 auto}
+  .stage{position:relative;background:#e9e9e9;overflow:hidden}
+  .stage img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:opacity .35s}
+  .stage img.fade{opacity:0}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;border:0;background:rgba(255,255,255,.94);
+    color:#000;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+  .arrow:hover{background:#000;color:#fff}
+  .arrow svg{width:22px;height:22px}
+  .prev{left:18px}.next{right:18px}
+  .caption{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:22px 0 26px;border-bottom:1px solid var(--line)}
+  .caption h3{font-size:clamp(24px,2.4vw,30px);font-variation-settings:"opsz" 48}
+  .caption p{margin:6px 0 0;color:var(--soft);max-width:60ch}
+  .count{color:var(--soft);font-size:17px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;list-style:none;margin:24px 0 0;padding:0}
+  .thumbs button{display:block;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
+  .thumbs img{width:100%;aspect-ratio:3/2;object-fit:cover;opacity:.6;transition:opacity .2s;outline:3px solid transparent;outline-offset:-3px}
+  .thumbs button:hover img{opacity:.9}
+  .thumbs button[aria-current="true"] img{opacity:1;outline-color:var(--red)}
+  .thumbs .t{display:block;margin-top:10px;font-size:17px;font-weight:550;line-height:1.3;color:#000}
+  .thumbs .y{display:block;font-size:16px;color:var(--soft)}
+
+  /* ---------- arkitektur ---------- */
+  .arch{background:#000;color:#fff}
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;list-style:none;margin:0;padding:0}
+  .projects img{width:100%;aspect-ratio:4/3;object-fit:cover}
+  .projects h3{color:#fff;font-size:22px;margin-top:18px;font-variation-settings:"opsz" 32}
+  .projects p{color:#cfcfcf;margin:6px 0 0;font-size:18px}
+  .arch .more{color:#fff}
+  .arch .grid-foot{margin-top:44px}
+
+  /* ---------- nyheter ---------- */
+  .news{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;list-style:none;margin:0;padding:0}
+  .news article{display:flex;flex-direction:column;height:100%}
+  .news img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .news time{display:block;margin-top:18px;color:var(--red);font-size:16px;font-weight:600}
+  .news h3{font-size:23px;line-height:1.25;margin:6px 0 10px;font-variation-settings:"opsz" 32}
+  .news h3 a{text-decoration:none}
+  .news h3 a:hover{text-decoration:underline;text-underline-offset:4px}
+  .news p{color:#3d3d3d;font-size:18px;margin:0 0 6px}
+
+  /* ---------- footer ---------- */
+  .foot{position:relative;color:#fff;background:var(--red) url("../assets/img/3ed4354850e098c5dc9d96c47870a27d_fit.jpg") center 100%/cover no-repeat}
+  .foot::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.62),rgba(0,0,0,.8))}
+  .foot .wrap{position:relative;text-align:center;padding-top:clamp(72px,9vw,112px);padding-bottom:40px}
+  .foot .brand-big{font-size:clamp(48px,6vw,72px);font-weight:620;letter-spacing:-.03em;color:#fff;font-variation-settings:"opsz" 144;margin:0}
+  .foot address{font-style:normal;font-size:20px;margin:14px 0 6px;line-height:1.5}
+  .foot .mail{color:#fff}
+  .social{display:flex;justify-content:center;gap:14px;margin:28px 0 40px}
+  .social a{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.85);display:grid;place-items:center;color:#fff}
+  .social a:hover{background:#fff;color:#000}
+  .social svg{width:22px;height:22px}
+  .foot-nav ul{display:flex;justify-content:center;flex-wrap:wrap;gap:0 6px;list-style:none;margin:0;padding:0}
+  .foot-nav a{display:flex;align-items:center;min-height:44px;padding:0 12px;color:#fff;text-decoration:none;font-size:17px}
+  .foot-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+  .legal{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.3);display:flex;justify-content:center;flex-wrap:wrap;gap:0 24px;font-size:16px;color:#e4e4e4}
+  .legal a{display:inline-flex;align-items:center;min-height:44px;color:#fff}
+
+  /* black menu bar, as on today's hallery.se */
+  .top{background:#000;border-bottom-color:#000}
+  .brand,.nav a,.menu-btn{color:#fff}
+  .burger span{background:#fff}
+  .nav a::after{background:#fff}
+  .nav a:focus-visible,.menu-btn:focus-visible,.brand:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  @media (max-width:1100px){
+    .nav{background:#000}
+    .nav li{border-bottom-color:#333}
+  }
+
+  .version{position:fixed;left:16px;bottom:16px;z-index:60;margin:0;background:#000;color:#fff;font-size:14px;font-weight:500;padding:8px 12px;border-radius:2px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1100px){
+    .menu-btn{display:inline-flex}
+    .nav{position:fixed;left:0;right:0;top:77px;bottom:0;background:#fff;padding:12px var(--pad) 40px;overflow:auto;
+      transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
+    .nav.open{opacity:1;visibility:visible;transform:none}
+    .nav ul{flex-direction:column;gap:0}
+    .nav li{border-bottom:1px solid var(--line)}
+    .nav a{min-height:60px;font-size:22px;padding:0 4px}
+    .nav a::after{left:4px;right:auto;width:28px;bottom:12px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:860px){
+    .now .wrap,.about{grid-template-columns:1fr}
+    .now figure{order:2}
+    .now figure img{aspect-ratio:3/2}
+    .about figure{max-width:520px}
+    .projects,.news{grid-template-columns:1fr;gap:44px}
+    .thumbs{grid-template-columns:repeat(4,1fr);gap:10px}
+    .thumbs .t,.thumbs .y{font-size:14px}
+  }
+  @media (max-width:560px){
+    body{font-size:18px}
+    .top .wrap{height:68px}
+    .nav{top:69px}
+    .brand{font-size:26px}
+    .hero{height:600px;min-height:0}
+    .hero img{object-position:40% 45%;transform:none}
+    .hero-text{bottom:40px}
+    .dates .d{font-size:26px}
+    .foot .wrap{padding-bottom:84px}
+    .projects img{aspect-ratio:16/10}
+    .dates li{padding:12px 12px 10px}
+    .grid{gap:32px 14px}
+    .mat{padding:8px}
+    .item h3{font-size:18px}
+    .tech{font-size:17px}
+    .price{font-size:18px}
+    .buy{flex-direction:column;align-items:flex-start;gap:8px}
+    .status{font-size:14px}
+    .arrow{width:48px;height:48px}
+    .prev{left:10px}.next{right:10px}
+    .stage img{aspect-ratio:4/3}
+    .caption{flex-direction:column;gap:6px}
+    .thumbs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-right:calc(var(--pad) * -1);padding-right:var(--pad)}
+    .thumbs li{flex:0 0 44%;scroll-snap-align:start}
+    .version{left:10px;bottom:10px;font-size:13px}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#innehall">Hoppa till innehållet</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Hallery, till startsidan">Hallery</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">
+      <span class="mlabel">Meny</span><span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Huvudmeny">
+      <ul>
+        <li><a href="#" aria-current="page">Hem</a></li>
+        <li><a href="#utstallningar">Utställningar</a></li>
+        <li><a href="#till-salu">Silver och keramik</a></li>
+        <li><a href="#arkitektur">Arkitektur</a></li>
+        <li><a href="#nyheter">Nyheter</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#till-salu">Shop</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="innehall">
+  <section class="hero" aria-labelledby="hero-title">
+    <img src="../assets/img/3ed4354850e098c5dc9d96c47870a27d_fit.jpg"
+         alt="Tolv små keramikhus i vitt, grått och svart står samlade på en lavklädd granithäll vid en gräsmatta.">
+    <div class="hero-text">
+      <h1 id="hero-title">Hallery</h1>
+      <p>Ett hemmagalleri på Bergåsstigen 2E i Danderyd</p>
+      <a class="btn btn-hero" href="#om">Om Hallery</a>
+    </div>
+  </section>
+
+  <section class="now" id="aktuellt" aria-labelledby="now-title">
+    <div class="wrap">
+      <figure>
+        <img src="../assets/img/bergåsstigen_jul.jpg"
+             alt="Vardagsrummet på Bergåsstigen i kvällsljus: svart spiraltrappa, matbord med Wegnerstolar och liljor i en vas.">
+        <figcaption>Hallery på Bergåsstigen 2E en decemberkväll.</figcaption>
+      </figure>
+      <div>
+        <span class="tag">Aktuellt</span>
+        <h2 id="now-title">Hallery Christmas 2026</h2>
+        <p class="lead">Vi bjuder på adventsfika med glögg och pepparkakor. Nu finns mycket nytt till salu, både keramik och silversmycken.</p>
+        <ul class="dates" aria-label="Öppet följande söndagar">
+          <li><span class="m">söndag</span><span class="d">6 dec</span></li>
+          <li><span class="m">söndag</span><span class="d">13 dec</span></li>
+          <li><span class="m">söndag</span><span class="d">20 dec</span></li>
+        </ul>
+        <p class="where"><span><strong>Öppet</strong> kl 12–16</span><span><strong>Var</strong> Bergåsstigen 2E, Danderyd</span></p>
+        <div class="actions">
+          <a class="btn btn-white" href="https://maps.google.com/?q=Bergåsstigen+2E,+Danderyd">Hitta hit</a>
+          <a class="btn btn-ghost" href="#till-salu">Se vad som finns till salu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="om" aria-labelledby="om-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="om-title">Om Hallery</h2></div>
+      <div class="about">
+        <div class="text">
+          <p>Idén om ett ”hemmagalleri” väcktes sommaren 2020 när jag besökte en utställning i Edsbruks gamla industrimiljö, där Albin Wiberg ställde ut sina expressiva målningar.</p>
+          <p>Med ett hemmagalleri kan man både se konst vid små privata visningar och se den i en hemmiljö – för att få en känsla för hur konsten fungerar i en privatbostad. Hösten 2021 kunde jag öppna dörrarna till mitt hem och idén blev verklighet.</p>
+          <p>2024 sålde jag min villa på Furuvägen 4 och flyttade till ett radhus ritat av Jordens arkitekter på Bergåsstigen 2E i Danderyd. Här har jag nu återigen öppnat Hallery och håller öppet vid speciellt valda tillfällen. Välkommen!</p>
+          <div class="sign"><b>Klara Frosterud</b><span>Arkitekt, silversmed och keramiker</span></div>
+          <p style="margin-top:18px"><a class="more" href="#">Läs hela berättelsen</a></p>
+        </div>
+        <figure>
+          <img src="../assets/img/dd447d5f2ea25ed7d0dba234258c1ffd_fit.jpg"
+               alt="Klara Frosterud sitter i en svart Ägget-fåtölj framför en stor svartvit målning av Albin Wiberg.">
+          <figcaption>Klara Frosterud i galleriet. Foto: Andy Liffner</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec forsale" id="till-salu" aria-labelledby="salu-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="salu-title">Till salu</h2>
+        <p>Silversmycken och keramik av Klara Frosterud. Allt går att se och köpa på plats i Hallery.</p>
+      </div>
+      <div class="chips" role="group" aria-label="Visa föremål">
+        <button class="chip" type="button" data-filter="alla" aria-pressed="true">Alla</button>
+        <button class="chip" type="button" data-filter="silver" aria-pressed="false">Silver</button>
+        <button class="chip" type="button" data-filter="keramik" aria-pressed="false">Keramik</button>
+      </div>
+      <ul class="grid">
+        <li class="item" data-cat="keramik">
+          <div class="mat"><img src="../assets/img/cf25b73e93d37cb41f5fc08b744c5b5d_fit.jpg" alt="Små keramikhus i rakuteknik med craquelerad glasyr på en stenplatta."></div>
+          <div class="meta">
+            <h3><a href="#">Keramikhus i rakuteknik</a></h3>
+            <p class="tech">Raku</p>
+            <div class="buy"><span class="price">850 kr</span><span class="status s-sale">Till salu</span></div>
+            <a class="ask" href="#kontakt">Intresserad?</a>
+          </div>
+        </li>
+        <li class="item" data-cat="silver">
+          <div class="mat"><img src="../assets/img/107a53c73a5197f7cbb29eeef099a3d9_fit.jpg" alt="Polerad silverring med en liten fyrkant i guld, på vit bakgrund."></div>
+          <div class="meta">
+            <h3><a href="#">Silverring med guldfyrkant</a></h3>
+            <p class="tech">925 silver, guld</p>
+            <div class="buy"><span class="price">2 200 kr</span><span class="status s-sale">Till salu</span></div>
+            <a class="ask" href="#kontakt">Intresserad?</a>
+          </div>
+        </li>
+        <li class="item" data-cat="keramik">
+          <div class="mat"><img src="../assets/img/dbab4409c1b380fbd534d743fbf9dd0b_fit.jpg" alt="Hög facetterad vas i matt svartbränt stengods med torkade blommor, i en fönstersmyg."></div>
+          <div class="meta">
+            <h3><a href="#">Stealthvas</a></h3>
+            <p class="tech">Svartbränt stengods</p>
+            <div class="buy"><span class="price">1 600 kr</span><span class="status s-res">Reserverad</span></div>
+            <a class="ask" href="#kontakt">Intresserad?</a>
+          </div>
+        </li>
+        <li class="item" data-cat="silver">
+          <div class="mat"><img src="../assets/img/c0bed58867ca00419bbf83b24866a8d2_fit.jpg" alt="Tre halsband med små gjutna ekollon i silver på tunna kedjor."></div>
+          <div class="meta">
+            <h3><a href="#">Gjutna silverekollon, halsband</a></h3>
+            <p class="tech">Gjutet silver</p>
+            <div class="buy"><span class="price">1 900 kr</span><span class="status s-sale">Till salu</span></div>
+            <a class="ask" href="#kontakt">Intresserad?</a>
+          </div>
+        </li>
+        <li class="item sold" data-cat="keramik">
+          <div class="mat"><img src="../assets/img/0c9cf8ef2d1309e66e9e6f0961156d97_fit.jpg" alt="Rund vas i rakuteknik med grön glasyr och svart hals, på en ekhylla."></div>
+          <div class="meta">
+            <h3><a href="#">Vas rund i rakuteknik</a></h3>
+            <p class="tech">Raku, grön glasyr</p>
+            <div class="buy"><span class="price"><span class="sr-only" style="position:absolute;left:-9999px">Tidigare pris </span>950 kr</span><span class="status s-sold">Såld</span></div>
+            <a class="ask" href="#">Visa</a>
+          </div>
+        </li>
+        <li class="item" data-cat="silver">
+          <div class="mat"><img src="../assets/img/1c2787fc1e8ddb703a42ae5c2e97c79f_fit.jpg" alt="Silverring med en blank, rund infattad obsidiansten."></div>
+          <div class="meta">
+            <h3><a href="#">Silverring med infattad obsidiansten</a></h3>
+            <p class="tech">925 silver, obsidian</p>
+            <div class="buy"><span class="price">2 400 kr</span><span class="status s-res">Reserverad</span></div>
+            <a class="ask" href="#kontakt">Intresserad?</a>
+          </div>
+        </li>
+        <li class="item" data-cat="keramik">
+          <div class="mat"><img src="../assets/img/5be9bd90365d5e19b5476afd52374a80_fit.jpg" alt="Inramad keramiktavla med ett hus i jordtoner, i svart ram."></div>
+          <div class="meta">
+            <h3><a href="#">Keramiktavla hus</a></h3>
+            <p class="tech">Stengods, inramad</p>
+            <div class="buy"><span class="price">1 400 kr</span><span class="status s-sale">Till salu</span></div>
+            <a class="ask" href="#kontakt">Intresserad?</a>
+          </div>
+        </li>
+        <li class="item sold" data-cat="silver">
+          <div class="mat"><img src="../assets/img/54a6a4add0ec8c4040f7781574966463_fit.jpg" alt="Ett par örhängen i silver med blanka kulor på smala stift."></div>
+          <div class="meta">
+            <h3><a href="#">Silverörhängen med kula</a></h3>
+            <p class="tech">925 silver</p>
+            <div class="buy"><span class="price"><span style="position:absolute;left:-9999px">Tidigare pris </span>1 200 kr</span><span class="status s-sold">Såld</span></div>
+            <a class="ask" href="#">Visa</a>
+          </div>
+        </li>
+      </ul>
+      <div class="grid-foot"><a class="btn btn-dark" href="#">Se alla föremål →</a></div>
+    </div>
+  </section>
+
+  <section class="sec" id="utstallningar" aria-labelledby="ex-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="ex-title">Utställningar</h2>
+        <p>Inbjudna konstnärer som har ställt ut i Hallery sedan 2021.</p>
+      </div>
+      <div class="show" aria-roledescription="bildspel" aria-label="Tidigare utställningar">
+        <div class="stage">
+          <img id="stage-img" src="../assets/img/2340b64bb849ef311a5653bce4792cc5_fit.jpg" alt="">
+          <button class="arrow prev" type="button" aria-label="Föregående utställning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="arrow next" type="button" aria-label="Nästa utställning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="caption" aria-live="polite">
+          <div>
+            <h3 id="cap-title">Helena Polgård Nygren</h3>
+            <p id="cap-text">Arkitekt och akvarellmålare. Den sista utställningen på Furuvägen 4.</p>
+          </div>
+          <span class="count" id="cap-count">1 av 4</span>
+        </div>
+        <ul class="thumbs">
+          <li><button type="button" aria-current="true" data-i="0"><img src="../assets/img/2340b64bb849ef311a5653bce4792cc5_fit.jpg" alt=""><span class="t">Helena Polgård Nygren</span><span class="y">2024</span></button></li>
+          <li><button type="button" data-i="1"><img src="../assets/img/f5da3d6e8e3ee3c525fe8c6d0ac541d0_fit.jpg" alt=""><span class="t">Märyland</span><span class="y">2023</span></button></li>
+          <li><button type="button" data-i="2"><img src="../assets/img/efe66e13d0236313b552dd96a8a72bd3_fit.jpg" alt=""><span class="t">Albin Wiberg &amp; Marie Oldfeldt</span><span class="y">2023</span></button></li>
+          <li><button type="button" data-i="3"><img src="../assets/img/c633467b32e836a7e2f45e75752e9423_fit.jpg" alt=""><span class="t">Albin Wiberg</span><span class="y">2021</span></button></li>
+        </ul>
+        <p class="center" style="margin:36px 0 0"><a class="more" href="#">Alla utställningar</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec arch on-dark" id="arkitektur" aria-labelledby="arch-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="arch-title">Arkitektur</h2>
+        <p>Ett urval av Klaras projekt som arkitekt – från villor och fritidshus till offentliga byggnader.</p>
+      </div>
+      <ul class="projects">
+        <li>
+          <img src="../assets/img/49f51f8ec449525a17d0f5dc68ab7156_fit.jpg" alt="Vit trävilla med stora fönster och ett mörkt entrétak, bakom höstgula ekgrenar.">
+          <h3>Furuvägen, Danderyd</h3>
+          <p>Tillbyggnad av villa, 2015</p>
+        </li>
+        <li>
+          <img src="../assets/img/ad88e1cdf8a0b9b98469ffd1f1d72b32_fit.jpg" alt="Rött fritidshus vid en stilla sjö, som speglas i vattnet.">
+          <h3>Sågarstugan, Odensvi</h3>
+          <p>Fritidshus vid vattnet</p>
+        </li>
+        <li>
+          <img src="../assets/img/f1d695b815256f3998985b26109cfe0a_fit.jpg" alt="Växjö stadshus och station, en byggnad med fasad av träribbor över en glasad bottenvåning.">
+          <h3>Växjö stadshus och station</h3>
+          <p>Med White arkitekter, 1:a pris i tävling</p>
+        </li>
+      </ul>
+      <div class="grid-foot"><a class="more" href="#">Se alla projekt</a></div>
+    </div>
+  </section>
+
+  <section class="sec" id="nyheter" aria-labelledby="news-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="news-title">Nyheter</h2></div>
+      <ul class="news">
+        <li><article>
+          <img src="../assets/img/IMG_3669.jpg" alt="Långt bord med grön duk fullt av svart keramik och silver i en ljus utställningssal på Gränsö slott.">
+          <time datetime="2026-07-04">4 juli 2026</time>
+          <h3><a href="#">Hallery på Gränsö slott sommaren 2026</a></h3>
+          <p>Utställningen ”Från Tjust till Tokyo” pågick fram till den 2 augusti, med öppet varje dag kl 9–18.</p>
+        </article></li>
+        <li><article>
+          <img src="../assets/img/1235e78f31e32c1e5c21451b6465fe22_fit.jpg" alt="Vita och grå hus i papperslera på två stenplattor.">
+          <time datetime="2025-12-04">4 december 2025</time>
+          <h3><a href="#">Välkomna till Hallery Christmas 2025!</a></h3>
+          <p>Adventsfika med glögg och pepparkakor, och mycket nytt till salu – både keramik och silversmycken.</p>
+        </article></li>
+        <li><article>
+          <img src="../assets/img/SU_oktober_2025.jpg" alt="Keramikskålar och fat på en orange disk i en ljus foajé på Stockholms universitet.">
+          <time datetime="2025-10-21">21 oktober 2025</time>
+          <h3><a href="#">Höstsalong Stockholms universitet</a></h3>
+          <p>Klara Frosterud ställer ut både keramik och silversmide på höstsalongen.</p>
+        </article></li>
+      </ul>
+      <div class="grid-foot"><a class="btn btn-line" href="#">Alla nyheter</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot on-dark" id="kontakt">
+  <div class="wrap">
+    <p class="brand-big">Hallery</p>
+    <address>Bergåsstigen 2E, 182 33 Danderyd<br><a class="mail" href="mailto:klara@hallery.se">klara@hallery.se</a></address>
+    <div class="social">
+      <a href="https://www.facebook.com/" aria-label="Hallery på Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Hallery på Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <nav class="foot-nav" aria-label="Sidfotsmeny">
+      <ul>
+        <li><a href="#">Hem</a></li>
+        <li><a href="#utstallningar">Utställningar</a></li>
+        <li><a href="#till-salu">Silver och keramik</a></li>
+        <li><a href="#arkitektur">Arkitektur</a></li>
+        <li><a href="#nyheter">Nyheter</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#till-salu">Shop</a></li>
+      </ul>
+    </nav>
+    <div class="legal">
+      <span style="display:inline-flex;align-items:center;min-height:44px">© 2026 Hallery</span>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#">Integritetspolicy</a>
+    </div>
+  </div>
+</footer>
+
+<p class="version">Förslag 5 — Klassisk</p>
+
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'),nav=document.getElementById('nav');
+  btn.addEventListener('click',function(){
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!open));
+    nav.classList.toggle('open',!open);
+    btn.querySelector('.mlabel').textContent=open?'Meny':'Stäng';
+  });
+  nav.addEventListener('click',function(e){if(e.target.closest('a')&&btn.getAttribute('aria-expanded')==='true')btn.click();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&btn.getAttribute('aria-expanded')==='true'){btn.click();btn.focus();}});
+
+  var chips=document.querySelectorAll('.chip'),items=document.querySelectorAll('.item');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c));});
+    var f=c.dataset.filter;
+    items.forEach(function(it){it.hidden=!(f==='alla'||it.dataset.cat===f);});
+  });});
+
+  var slides=[
+    {src:'2340b64bb849ef311a5653bce4792cc5_fit.jpg',pos:'50% 50%',t:'Helena Polgård Nygren',x:'Arkitekt och akvarellmålare. Den sista utställningen på Furuvägen 4.',
+     alt:'Målningar av Helena Polgård Nygren i blått och grått hänger i Hallerys ljusa rum.'},
+    {src:'f5da3d6e8e3ee3c525fe8c6d0ac541d0_fit.jpg',pos:'50% 62%',t:'Märyland',x:'Konstnärsduon Maria Rosén, konstnär, och Maria Zetterstrand, keramiker.',
+     alt:'Matbord i ek med stora svarta keramikskulpturer, och två målningar på väggen bakom.'},
+    {src:'efe66e13d0236313b552dd96a8a72bd3_fit.jpg',pos:'50% 45%',t:'Albin Wiberg & Marie Oldfeldt',x:'Albin Wiberg tillsammans med landskapsarkitekten och keramikern Marie Oldfeldt. Klara visade även sitt silversmide.',
+     alt:'Matsal med dukat bord, Wegnerstolar och fyra abstrakta målningar på den vita väggen.'},
+    {src:'c633467b32e836a7e2f45e75752e9423_fit.jpg',pos:'50% 35%',t:'Albin Wiberg',x:'Hösten 2021 öppnade Hallery för första gången. Utställningen pågick i ett halvår, med en ”revernissage” varje månad.',
+     alt:'Stor målning i svart och ockra av Albin Wiberg ovanför en ekbyrå i matsalen.'}
+  ];
+  var i=0,img=document.getElementById('stage-img'),tt=document.getElementById('cap-title'),tx=document.getElementById('cap-text'),
+      ct=document.getElementById('cap-count'),tb=document.querySelectorAll('.thumbs button');
+  function go(n){
+    i=(n+slides.length)%slides.length;var s=slides[i];
+    img.classList.add('fade');
+    setTimeout(function(){img.src='../assets/img/'+s.src;img.alt=s.alt;img.style.objectPosition=s.pos;img.classList.remove('fade');},180);
+    tt.textContent=s.t;tx.textContent=s.x;ct.textContent=(i+1)+' av '+slides.length;
+    tb.forEach(function(b,k){if(k===i)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');});
+  }
+  img.alt=slides[0].alt;img.style.objectPosition=slides[0].pos;
+  document.querySelector('.prev').addEventListener('click',function(){go(i-1);});
+  document.querySelector('.next').addEventListener('click',function(){go(i+1);});
+  tb.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i);});});
+})();
+</script>
+</body>
+</html>
